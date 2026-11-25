@@ -159,7 +159,8 @@ footer strong{color:var(--snow)}
 <section class="page" id="p-route">
 <div class="band"><div class="wrap panel">
 <h2>De route</h2>
-<div class="fig" style="min-height:0;aspect-ratio:600/460"><svg id="map" viewBox="0 0 600 460" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Routekaart"></svg></div>
+<p class="muted">Het gebied waarbinnen we de wandeling gaan uitzetten.</p>
+<img src="routekaart.jpg" width="1214" height="880" alt="Kaart van Zuid-Limburg met Gulpen, Wijlre, Mechelen, Epen en Vaals" style="display:block;width:100%;height:auto;border-radius:18px;border:1px solid var(--line)">
 </div></div>
 </section>
 </main>
@@ -188,20 +189,6 @@ el('walkers').innerHTML=W.map(([t,x,y,s])=>`<use href="#${t}" x="${x}" y="${y}" 
 /* sneeuw */
 const sn=el('snow');
 sn.innerHTML=Array.from({length:60},()=>{const z=rnd(3,7);return `<i style="left:${rnd(0,100)}%;width:${z}px;height:${z}px;animation-duration:${rnd(8,18)}s;animation-delay:-${rnd(0,18)}s;opacity:${rnd(.4,.9).toFixed(2)}"></i>`}).join('');
-
-/* route */
-const pts=[[300,400],[180,330],[120,200],[300,150],[470,90],[540,250],[430,330],[300,400]];
-const path='M'+pts.map(p=>p.join(' ')).join(' L');
-el('map').innerHTML=`
- <rect width="600" height="460" fill="#e8eef7"/>
- <path d="M0 360 Q150 300 260 350 T600 300" fill="none" stroke="#9cc0e8" stroke-width="22"/>
- <g fill="#2e6b4f" opacity=".85">${[[420,60],[450,110],[500,70],[520,120],[470,40],[540,90],[400,100]].map(([x,y])=>`<path d="M${x} ${y-18} l12 26 h-24z"/>`).join('')}</g>
- <g fill="#cfd9e8">${[[270,380,60,40],[150,310,40,30],[280,130,40,30]].map(([x,y,w,h])=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="4"/>`).join('')}</g>
- <g transform="translate(560 230)" stroke="#5a6b85" stroke-width="3"><line x1="0" y1="-16" x2="0" y2="16"/><line x1="-14" y1="0" x2="14" y2="0"/></g>
- <path d="${path}" fill="none" stroke="#d2392f" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
- ${pts.slice(1,-1).map(([x,y])=>`<circle cx="${x}" cy="${y}" r="9" fill="#0d1f3c" stroke="#fff" stroke-width="3"/>`).join('')}
- <circle cx="300" cy="400" r="16" fill="#f4b942" stroke="#fff" stroke-width="3"/>
- <text x="300" y="405" text-anchor="middle" font-family="Nunito Sans,sans-serif" font-weight="800" font-size="13" fill="#1b1405">S/F</text>`;
 
 /* pagina's */
 const show=()=>{
